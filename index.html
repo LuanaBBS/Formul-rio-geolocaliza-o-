@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+  </head>
+  <body>
+    <p>Para preencher o formulário, clique no botão abaixo após permitir o acesso à sua localização:</p>
+    <button onclick="getLocationAndRedirect()">Abrir Formulário</button>
+
+    <script>
+      var formURL = "https://docs.google.com/forms/d/e/1FAIpQLSdABmhox-lenxpYajz_9aZ0B2-yrQjCVsRQX-LNZVy3kJVoyg/viewform?usp=pp_url&entry.770856224=";
+
+      function getLocationAndRedirect() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var loc = position.coords.latitude + "," + position.coords.longitude;
+            redirectToForm(loc);
+          });
+        } else { 
+          alert("Seu navegador não suporta acesso à localização.");
+        }
+      }
+
+      function redirectToForm(location) {
+        window.location.href = formURL + location;
+      }
+    </script>
+  </body>
+</html>
